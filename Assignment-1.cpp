@@ -1,9 +1,11 @@
 // Assignment 1 attempt
-
+//
 // Program to calculate transition energy using simple Bohr formula
 
 #include<iostream>
 #include<iomanip>
+
+using namespace std;
 
 int main()
 {
@@ -19,62 +21,61 @@ int main()
   bool junits;
   // Ask user to enter atomic number
 
-  std::cout<<"Please enter an atomic number:";
-  std::cin>>Z;
+  cout<<"Please enter an atomic number:";
+  cin>>Z;
 
-  while(std::cin.fail()) 
+  while(cin.fail()) 
   {
-    std::cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
+    cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
     // Clear fail bit and ignore bad input
-    std::cin.clear(); 
-    std::cin.ignore(); 
-    std::cin>>Z;
+    cin.clear(); 
+    cin.ignore(); 
+    cin>>Z;
   }
 
   // Ask user to enter initial and final quantum numbers
 
-  std::cout<<"Please enter an initial quanutm number:";
-  std::cin>>ni;
+  cout<<"Please enter an initial quanutm number:";
+  cin>>ni;
 
-  while(std::cin.fail()) 
+  while(cin.fail()) 
   {
-    std::cout<<"Sorry, your input was not valid, please enter a valid initial quantum number: "; 
+    cout<<"Sorry, your input was not valid, please enter a valid initial quantum number: "; 
   
-    std::cin.clear(); 
-    std::cin.ignore(); 
-    std::cin>>Z;
+    cin.clear(); 
+    cin.ignore(); 
+    cin>>Z;
   }
 
-  std::cout<<"Please enter a final quantum number:";
-  std::cin>>nf;
+  cout<<"Please enter a final quantum number:";
+  cin>>nf;
 
   while(std::cin.fail()) 
   {
-    std::cout<<"Sorry, your input was not valid, please enter a valid final quantum number: "; 
-  
-    std::cin.clear(); 
-    std::cin.ignore(); 
-    std::cin>>Z;
+    cout<<"Sorry, your input was not valid, please enter a valid final quantum number: ";
+
+    cin.clear(); 
+    cin.ignore(); 
+    cin>>Z;
   }
 
   // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2-1/n_i^2) eV
 
-  std::cout<<"Do you want the answer in Joules? (y/n)";
-  std::cin>>junits;
+  cout<<"Do you want the answer in Joules? (y/n)";
+  cin>>junits;
 
-  while(std::cin.fail()) 
+  while(cin.fail()) 
   {
-    std::cout<<"Sorry, your input was not valid, please enter a valid answer (y/n): "; 
-  
-    std::cin.clear(); 
-    std::cin.ignore(); 
-    std::cin>>Z;
+    cout<<"Sorry, your input was not valid, please enter a valid answer (y/n):"; 
+    cin.clear(); 
+    cin.ignore(); 
+    cin>>Z;
   }
 
   delta_E = 13.6*(Z^2)*(1/ni^2-1/nf^2);
 
   // Output answer
-  std::cout << "Here is my answer:" <<delta_E<< std::endl;
+  cout << "Here is my answer:" <<delta_E<< endl;
 
   return 0;
 }
