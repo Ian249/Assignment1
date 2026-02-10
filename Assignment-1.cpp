@@ -9,31 +9,33 @@ using namespace std;
 
 int main()
 {
-  // Declare variables here
+  // Declare constants here
 
   const double electron_volt{1.6e-19};
 
+  // declare variables here
 
   int Z;
   int ni;
   int nf;
   double delta_E;
   bool junits;
-  // Ask user to enter atomic number
 
+  // request that the user input an atomic number value
   cout<<"Please enter an atomic number:";
   cin>>Z;
 
   while(cin.fail()) 
   {
     cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
-    // Clear fail bit and ignore bad input
+    // check variable type of input, ignore if fail
     cin.clear(); 
     cin.ignore(); 
     cin>>Z;
   }
 
-  // Ask user to enter initial and final quantum numbers
+  // Ask user to input initial and final quantum numbers
+  // check variable type against declaration and ignore if fail
 
   cout<<"Please enter an initial quanutm number:";
   cin>>ni;
@@ -59,7 +61,7 @@ int main()
     cin>>Z;
   }
 
-  // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2-1/n_i^2) eV
+  // ask user if they prefer an answer in joules or electron volts, provide (y/n) options, ignore if fail
 
   cout<<"Do you want the answer in Joules? (y/n)";
   cin>>junits;
@@ -71,6 +73,8 @@ int main()
     cin.ignore(); 
     cin>>Z;
   }
+
+  // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2-1/n_i^2) eV
 
   delta_E = 13.6*(Z^2)*(1/ni^2-1/nf^2);
 
