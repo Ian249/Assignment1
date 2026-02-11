@@ -4,6 +4,7 @@
 
 #include<iostream>
 #include<iomanip>
+#include<string>
 
 using namespace std;
 
@@ -19,7 +20,8 @@ int main()
   int ni;
   int nf;
   double delta_E;
-  bool junits;
+  double delta_E_joules;
+  string units_answer;
 
   // request that the user input an atomic number value
   cout<<"Please enter an atomic number:";
@@ -61,10 +63,35 @@ int main()
     cin>>Z;
   }
 
+  // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2-1/n_i^2) eV
+
+  delta_E = 13.6*(Z^2)*(1/ni^2-1/nf^2);
+  delta_E_joules = delta_E * electron_volt;
+
   // ask user if they prefer an answer in joules or electron volts, provide (y/n) options, ignore if fail
+  // print answer
 
   cout<<"Do you want the answer in Joules? (y/n)";
-  cin>>junits;
+  cin>>units_answer;
+
+  while(units_answer!="y" and units_answer!="n")
+  {
+    cout<<"Sorry, your input was not valid, please enter a valid answer: ";
+
+    units_answer.clear(); 
+    cin>>units_answer;
+  }
+
+  if (units_answer=="y")
+  {
+    cout<<"In joules, the change in energy is:\n"<<delta_E_joules<<"J";
+    
+  } else if (units_answer=="n")
+  {
+    cout<<"In electron Volts, the change in energy is:\n"<<delta_E<<"eV"<<endl;
+
+  }
+
 
   while(cin.fail()) 
   {
@@ -73,13 +100,6 @@ int main()
     cin.ignore(); 
     cin>>Z;
   }
-
-  // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2-1/n_i^2) eV
-
-  delta_E = 13.6*(Z^2)*(1/ni^2-1/nf^2);
-
-  // Output answer
-  cout << "Here is my answer:" <<delta_E<< endl;
 
   return 0;
 }
