@@ -40,7 +40,7 @@ int main()
   // Ask user to input initial and final quantum numbers
   // check variable type against declaration and ignore if fail
 
-  cout<<"Please enter an initial quanutm number:";
+  cout<<"Please enter an initial quantum number:";
   cin>>ni;
 
   while(cin.fail()) 
@@ -66,9 +66,8 @@ int main()
 
   // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_f^2-1/n_i^2) eV
   delta_E = 13.6*(pow(Z,2))*((1/pow(nf,2))-(1/pow(ni,2)));
-  cout<<delta_E<<endl;
   delta_E_joules = delta_E * electron_volt;
-  cout<<delta_E_joules<<endl;
+ 
 
   // ask user if they prefer an answer in joules or electron volts, provide (y/n) options, ignore if fail
   // print answer
