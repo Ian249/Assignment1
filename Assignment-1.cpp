@@ -5,6 +5,7 @@
 #include<iostream>
 #include<iomanip>
 #include<string>
+#include<cmath>
 
 using namespace std;
 
@@ -54,7 +55,7 @@ int main()
   cout<<"Please enter a final quantum number:";
   cin>>nf;
 
-  while(std::cin.fail()) 
+  while(cin.fail()) 
   {
     cout<<"Sorry, your input was not valid, please enter a valid final quantum number: ";
 
@@ -63,18 +64,18 @@ int main()
     cin>>Z;
   }
 
-  // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2-1/n_i^2) eV
-
-  delta_E = 13.6*(Z^2)*(1/ni^2-1/nf^2);
+  // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_f^2-1/n_i^2) eV
+  delta_E = 13.6*(pow(Z,2))*((1/pow(nf,2))-(1/pow(ni,2)));
+  cout<<delta_E<<endl;
   delta_E_joules = delta_E * electron_volt;
+  cout<<delta_E_joules<<endl;
 
   // ask user if they prefer an answer in joules or electron volts, provide (y/n) options, ignore if fail
   // print answer
-
   cout<<"Do you want the answer in Joules? (y/n)";
   cin>>units_answer;
 
-  while(units_answer!="y" and units_answer!="n")
+  while(units_answer!="y" && units_answer!="n")
   {
     cout<<"Sorry, your input was not valid, please enter a valid answer: ";
 
