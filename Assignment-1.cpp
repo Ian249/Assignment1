@@ -24,7 +24,7 @@ int main()
   double delta_E_joules;
   string units_answer;
   string run_question;
-  bool repeat;
+  bool repeat(true);
 
   while (repeat)
   {
@@ -89,11 +89,11 @@ int main()
       cin>>units_answer;
     }
 
-    if (units_answer=="y")
+    if (units_answer=="J")
     {
       cout<<"In joules, the change in energy is:"<<delta_E_joules<<"J";
       
-    } else if (units_answer=="n")
+    } else if (units_answer=="eV")
     {
       cout<<"In electron Volts, the change in energy is:"<<delta_E<<"eV"<<endl;
 
@@ -110,7 +110,7 @@ int main()
 
     cout<<"do you want to run the program again? (y/n)";
     cin>>run_question;
-    while(run_question!="J" && run_question!="eV")
+    while(run_question!="y" && run_question!="n")
     {
       cout<<"Sorry, your input was not valid, please enter a valid answer: ";
 
