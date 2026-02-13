@@ -6,6 +6,7 @@
 #include<iomanip>
 #include<string>
 #include<cmath>
+#include<vector>
 
 using namespace std;
 
@@ -16,10 +17,10 @@ int main()
   const double electron_volt{1.6e-19};
 
   // declare variables here
+  // including a vector for the parameters Z ni and nf and a boolean deciding whether
+  // the program is run multiple times
 
-  int Z;
-  int ni;
-  int nf;
+  vector <int> parameters(3);
   double delta_E;
   double delta_E_joules;
   string units_answer;
@@ -32,23 +33,32 @@ int main()
 
 
     // request that the user input an atomic number value
+    // check variable type against declaration, and that Z > 0
     cout<<"Please enter an atomic number:";
-    cin>>Z;
+    cin>>parameters[0];
 
     while(cin.fail()) 
     {
       cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
-      // check variable type of input, ignore if fail
       cin.clear(); 
       cin.ignore(); 
-      cin>>Z;
+      cin>>parameters[0];
+    }
+
+      while(parameters[0]<=0) 
+    {
+      cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
+      cin.clear(); 
+      cin.ignore(); 
+      cin>>parameters[0];
     }
 
     // Ask user to input initial and final quantum numbers
     // check variable type against declaration and ignore if fail
+    // check that both values are greater than 0 and ignore if fail
 
     cout<<"Please enter an initial quantum number:";
-    cin>>ni;
+    cin>>parameters[1];
 
     while(cin.fail()) 
     {
@@ -56,11 +66,19 @@ int main()
     
       cin.clear(); 
       cin.ignore(); 
-      cin>>Z;
+      cin>>parameters[1];
+    }
+
+    while(parameters[1]<=0) 
+    {
+      cout<<"Sorry, your input was not valid, please enter a valid initial quantum number: "; 
+      cin.clear(); 
+      cin.ignore(); 
+      cin>>parameters[1];
     }
 
     cout<<"Please enter a final quantum number:";
-    cin>>nf;
+    cin>>parameters[2];
 
     while(cin.fail()) 
     {
@@ -68,11 +86,19 @@ int main()
 
       cin.clear(); 
       cin.ignore(); 
-      cin>>Z;
+      cin>>parameters[2];
+    }
+
+    while(parameters[2]<=0) 
+    {
+      cout<<"Sorry, your input was not valid, please enter a valid final quantum number: "; 
+      cin.clear(); 
+      cin.ignore(); 
+      cin>>parameters[2];
     }
 
     // Compute photon energy, Delta E = 13.6*(Z^2)*(1/n_f^2-1/n_i^2) eV
-    delta_E = 13.6*(pow(Z,2))*((1/pow(nf,2))-(1/pow(ni,2)));
+    delta_E = 13.6*(pow(parameters[0],2))*((1/pow(parameters[2],2))-(1/pow(parameters[1],2)));
     delta_E_joules = delta_E * electron_volt;
   
 
@@ -83,7 +109,7 @@ int main()
 
     while(units_answer!="J" && units_answer!="eV")
     {
-      cout<<"Sorry, your input was not valid, please enter a valid answer: ";
+      cout<<"Sorry, your input was not valid, please enter a valid answer: "<<endl;
 
       units_answer.clear(); 
       cin>>units_answer;
@@ -91,7 +117,7 @@ int main()
 
     if (units_answer=="J")
     {
-      cout<<"In joules, the change in energy is:"<<delta_E_joules<<"J";
+      cout<<"In joules, the change in energy is:"<<delta_E_joules<<"J"<<endl;
       
     } else if (units_answer=="eV")
     {
@@ -99,14 +125,8 @@ int main()
 
     }
 
-
-    while(cin.fail()) 
-    {
-      cout<<"Sorry, your input was not valid, please enter a valid answer (y/n):"; 
-      cin.clear(); 
-      cin.ignore(); 
-      cin>>Z;
-    }
+    // asks whether the user wants to run thr program again and loops if yes
+    // ignore if fail
 
     cout<<"do you want to run the program again? (y/n)";
     cin>>run_question;
