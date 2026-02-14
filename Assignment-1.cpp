@@ -30,35 +30,32 @@ int main()
   while (repeat)
   {
 
-
-
     // request that the user input an atomic number value
     // check variable type against declaration, and that Z > 0
-    cout<<"Please enter an atomic number:";
-    cin>>parameters[0];
+    // prints error message if no valid input is found
 
-    while(cin.fail()) 
+    while(parameters[0]==0)
     {
-      cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
-      cin.clear(); 
-      cin.ignore(); 
+      cout<<"Please enter a valid atomic number:";
       cin>>parameters[0];
+      if(cin.fail() || parameters[0]<=0) 
+      {
+        cin.clear(); 
+        cin.ignore(); 
+        cin>>parameters[0];
+      } 
     }
+    
+    //confirms the given atomic number
+    cout<<"your chosen atomic number is: "<<parameters[0]<<endl;
 
-      while(parameters[0]<=0) 
-    {
-      cout<<"Sorry, your input was not valid, please enter a valid atomic number: "; 
-      cin.clear(); 
-      cin.ignore(); 
-      cin>>parameters[0];
-    }
 
     // Ask user to input initial and final quantum numbers
     // check variable type against declaration and ignore if fail
     // check that both values are greater than 0 and ignore if fail
 
     cout<<"Please enter an initial quantum number:";
-    cin>>parameters[1];
+    cin>>parameters[0];
 
     while(cin.fail()) 
     {
